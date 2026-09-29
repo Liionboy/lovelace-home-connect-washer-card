@@ -1,5 +1,5 @@
 const CARD_TYPE = "home-connect-washer-card";
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 const WASHER_ART = `<svg class="washer-art" viewBox="0 0 280 340" role="img" aria-label="Illustration of a front-loading washing machine">
   <defs>
@@ -25,13 +25,15 @@ const WASHER_ART = `<svg class="washer-art" viewBox="0 0 280 340" role="img" ari
     <circle cx="140" cy="210" r="69" fill="#19354b"/>
     <g clip-path="url(#washer-window)">
       <circle cx="140" cy="210" r="64" fill="url(#washer-glass)"/>
-      <path d="M69 236c20-11 38-11 57 0 17 10 35 11 55-1 19-11 35-9 53 0v45H69z" fill="url(#washer-water)" opacity=".9"/>
-      <path d="M72 235c19-11 36-11 55 0 18 10 35 11 54-1 19-11 36-9 51 0" fill="none" stroke="#c3ffff" stroke-opacity=".85" stroke-width="3"/>
-      <ellipse cx="111" cy="174" rx="45" ry="29" fill="url(#washer-highlight)"/>
-      <circle class="bubble bubble-a" cx="116" cy="222" r="5" fill="#e8ffff" fill-opacity=".7"/>
-      <circle class="bubble bubble-b" cx="151" cy="242" r="3" fill="#e8ffff" fill-opacity=".65"/>
-      <circle class="bubble bubble-c" cx="171" cy="218" r="4" fill="#e8ffff" fill-opacity=".6"/>
-      <path d="M92 199c17 9 39 10 63 1" fill="none" stroke="#c6fbff" stroke-opacity=".6" stroke-width="2"/>
+      <g class="drum-spin">
+        <path d="M69 236c20-11 38-11 57 0 17 10 35 11 55-1 19-11 35-9 53 0v45H69z" fill="url(#washer-water)" opacity=".9"/>
+        <path d="M72 235c19-11 36-11 55 0 18 10 35 11 54-1 19-11 36-9 51 0" fill="none" stroke="#c3ffff" stroke-opacity=".85" stroke-width="3"/>
+        <ellipse cx="111" cy="174" rx="45" ry="29" fill="url(#washer-highlight)"/>
+        <circle class="bubble bubble-a" cx="116" cy="222" r="5" fill="#e8ffff" fill-opacity=".7"/>
+        <circle class="bubble bubble-b" cx="151" cy="242" r="3" fill="#e8ffff" fill-opacity=".65"/>
+        <circle class="bubble bubble-c" cx="171" cy="218" r="4" fill="#e8ffff" fill-opacity=".6"/>
+        <path d="M92 199c17 9 39 10 63 1" fill="none" stroke="#c6fbff" stroke-opacity=".6" stroke-width="2"/>
+      </g>
     </g>
     <circle cx="140" cy="210" r="67" fill="none" stroke="#f5f8fa" stroke-opacity=".85" stroke-width="3"/>
     <rect x="96" y="300" width="88" height="5" rx="2.5" fill="#c4d2de"/>
@@ -45,12 +47,13 @@ const STYLE = `
   .shell{position:relative;padding:clamp(18px,3vw,28px);background:radial-gradient(ellipse at 15% 100%,color-mix(in srgb,var(--primary-color) 9%,transparent),transparent 48%)}
   .head{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:12px;min-width:0}.brand-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:color-mix(in srgb,var(--primary-color) 12%,transparent);color:var(--primary-color);font-size:20px}.eyebrow{color:var(--secondary-text-color);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.title{margin:3px 0 0;overflow:hidden;font-size:clamp(18px,2.6vw,23px);letter-spacing:-.035em;text-overflow:ellipsis;white-space:nowrap}
   .state-pill{display:flex;align-items:center;gap:8px;padding:8px 11px;border-radius:999px;background:var(--secondary-background-color);color:var(--secondary-text-color);font-size:11px;font-weight:750;white-space:nowrap}.state-dot{width:8px;height:8px;border-radius:50%;background:currentColor}.state-pill.running{color:var(--success-color,#218a72)}.state-pill.running .state-dot{box-shadow:0 0 0 4px color-mix(in srgb,currentColor 17%,transparent)}.state-pill.warning{color:var(--warning-color,#b57500)}.state-pill.error{color:var(--error-color,#d34444)}
-  .hero{display:grid;grid-template-columns:minmax(170px,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(12px,3vw,28px);margin-top:8px}.machine{position:relative;display:grid;place-items:center;min-height:250px}.washer-art{display:block;width:min(100%,250px);height:auto;overflow:visible}.bubble{animation:bubble-rise 3.6s ease-in-out infinite}.bubble-b{animation-delay:-1.2s}.bubble-c{animation-delay:-2.4s}.machine.spinning .washer-art{animation:machine-hum 2.2s ease-in-out infinite}
+  .hero{display:grid;grid-template-columns:minmax(170px,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(12px,3vw,28px);margin-top:8px}.machine{position:relative;display:grid;place-items:center;min-height:250px}.washer-art{display:block;width:min(100%,250px);height:auto;overflow:visible}.drum-spin{transform-box:view-box;transform-origin:140px 210px}.machine.spinning .drum-spin{animation:drum-rotation 4s linear infinite}.bubble{opacity:.55}.machine.spinning .bubble{animation:bubble-rise 2s ease-in-out infinite}.machine.spinning .bubble-b{animation-delay:-.7s}.machine.spinning .bubble-c{animation-delay:-1.3s}.machine.spinning .washer-art{animation:machine-hum 1.2s ease-in-out infinite}
   .hero-info{min-width:0;padding:8px 0}.state-label{color:var(--secondary-text-color);font-size:12px;font-weight:650}.operation{margin:5px 0 0;font-size:clamp(25px,4.5vw,40px);line-height:1.05;letter-spacing:-.055em;font-weight:780}.program{margin-top:10px;overflow:hidden;color:var(--secondary-text-color);font-size:14px;font-weight:650;text-overflow:ellipsis;white-space:nowrap}.progress-block{margin-top:24px}.progress-meta{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px;font-size:12px}.progress-caption{color:var(--secondary-text-color)}.progress-value{font-weight:760;font-variant-numeric:tabular-nums}.track{height:9px;overflow:hidden;border-radius:99px;background:var(--secondary-background-color)}.bar{height:100%;width:var(--progress);border-radius:inherit;background:linear-gradient(90deg,#42b8bd,#5d91e7);transition:width .4s ease}
   .info-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:16px}.info{min-width:0;padding:11px 12px;border:1px solid color-mix(in srgb,var(--divider-color) 55%,transparent);border-radius:15px;background:color-mix(in srgb,var(--card-background-color,#fff) 78%,var(--secondary-background-color))}.info-label{color:var(--secondary-text-color);font-size:10px;font-weight:720;letter-spacing:.06em;text-transform:uppercase}.info-value{display:block;margin-top:5px;overflow:hidden;font-size:13px;font-weight:730;text-overflow:ellipsis;white-space:nowrap}.info-value.good{color:var(--success-color,#218a72)}.info-value.bad{color:var(--warning-color,#b57500)}
   .footer{display:flex;justify-content:space-between;gap:10px;margin-top:17px;padding-top:12px;border-top:1px solid var(--divider-color);color:var(--secondary-text-color);font-size:10px}.footer span:last-child{text-align:right}
-  @keyframes bubble-rise{0%,100%{transform:translateY(4px);opacity:.45}50%{transform:translateY(-8px);opacity:.9}}@keyframes machine-hum{0%,100%{transform:translateX(0)}25%{transform:translateX(.7px)}75%{transform:translateX(-.7px)}}
-  @media(max-width:520px){.shell{padding:17px}.hero{grid-template-columns:120px minmax(0,1fr);gap:12px;margin-top:10px}.machine{min-height:185px}.washer-art{width:155px}.operation{font-size:27px}.progress-block{margin-top:17px}.info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.state-pill{padding:7px 9px;font-size:10px}}
+  .extras{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;margin-top:16px;padding-top:15px;border-top:1px solid var(--divider-color)}.idos{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.idos-title{width:100%;color:var(--secondary-text-color);font-size:10px;font-weight:760;letter-spacing:.08em;text-transform:uppercase}.idos-chip{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:12px;background:var(--secondary-background-color);font-size:11px;font-weight:700}.idos-dot{width:7px;height:7px;border-radius:50%;background:var(--success-color,#218a72)}.idos-chip.low{color:var(--warning-color,#b57500)}.idos-chip.low .idos-dot{background:currentColor}.idos-chip.unknown{color:var(--secondary-text-color)}.idos-chip.unknown .idos-dot{background:currentColor}.actions{display:flex;align-items:center;justify-content:flex-end;flex-wrap:wrap;gap:8px}.action-btn{min-height:38px;padding:0 14px;border:1px solid var(--divider-color);border-radius:12px;background:var(--card-background-color,#fff);color:var(--primary-text-color);font:inherit;font-size:12px;font-weight:760;cursor:pointer}.action-btn:hover:not(:disabled){border-color:var(--primary-color);color:var(--primary-color)}.action-btn.stop{color:var(--error-color,#d34444)}.action-btn.confirm{border-color:var(--error-color,#d34444);background:var(--error-color,#d34444);color:#fff}.action-btn:disabled{opacity:.42;cursor:not-allowed}.action-error{width:100%;color:var(--error-color,#d34444);font-size:11px;text-align:right}
+  @keyframes bubble-rise{0%,100%{transform:translateY(4px);opacity:.4}50%{transform:translateY(-10px);opacity:1}}@keyframes drum-rotation{to{transform:rotate(360deg)}}@keyframes machine-hum{0%,100%{transform:translateX(0)}25%{transform:translateX(1px)}75%{transform:translateX(-1px)}}
+  @media(max-width:520px){.shell{padding:17px}.hero{grid-template-columns:120px minmax(0,1fr);gap:12px;margin-top:10px}.machine{min-height:185px}.washer-art{width:155px}.operation{font-size:27px}.progress-block{margin-top:17px}.info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.state-pill{padding:7px 9px;font-size:10px}.extras{grid-template-columns:1fr}.actions{justify-content:flex-start}.action-error{text-align:left}}
   @media(max-width:360px){.hero{grid-template-columns:1fr}.machine{min-height:155px}.washer-art{width:150px}.hero-info{padding:0}.operation{font-size:30px}}
   @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 `;
@@ -68,6 +71,10 @@ const CONFIG_LABELS = {
   remote_start_entity: "Remote start available",
   temperature_entity: "Selected temperature",
   spin_speed_entity: "Selected spin speed",
+  stop_button_entity: "Stop program button",
+  power_switch_entity: "Appliance power switch",
+  idos_1_sensor_entity: "i-Dos 1 low-level alert",
+  idos_2_sensor_entity: "i-Dos 2 low-level alert",
 };
 
 const SCHEMA = [
@@ -84,6 +91,10 @@ const SCHEMA = [
     { name: "remote_start_entity", selector: { entity: { domain: "binary_sensor" } } },
     { name: "temperature_entity", selector: { entity: { domain: "select" } } },
     { name: "spin_speed_entity", selector: { entity: { domain: "select" } } },
+    { name: "stop_button_entity", selector: { entity: { domain: "button" } } },
+    { name: "power_switch_entity", selector: { entity: { domain: "switch" } } },
+    { name: "idos_1_sensor_entity", selector: { entity: { domain: "sensor" } } },
+    { name: "idos_2_sensor_entity", selector: { entity: { domain: "sensor" } } },
   ] },
 ];
 
@@ -162,6 +173,15 @@ class HomeConnectWasherCard extends HTMLElement {
     return ["on", "connected", "online", "true"].includes(value);
   }
 
+  idosStatus(entityKey) {
+    const value = (this.stateText(entityKey) || "").toLowerCase();
+    if (!value) return null;
+    if (value === "present") return { text: "Low · refill", className: "low" };
+    if (value === "confirmed") return { text: "Low · acknowledged", className: "low" };
+    if (value === "off") return { text: "Level OK", className: "" };
+    return { text: this.pretty(value), className: "unknown" };
+  }
+
   doorInfo() {
     const value = (this.stateText("door_entity") || "").toLowerCase();
     if (!value) return null;
@@ -201,6 +221,15 @@ class HomeConnectWasherCard extends HTMLElement {
     const temperature = this.stateText("temperature_entity");
     const spinSpeed = this.stateText("spin_speed_entity");
     const finish = this.finishTime();
+    const idos1 = this.idosStatus("idos_1_sensor_entity");
+    const idos2 = this.idosStatus("idos_2_sensor_entity");
+    const powerEntityId = this._config.power_switch_entity;
+    const powerState = powerEntityId ? this._hass.states?.[powerEntityId]?.state : null;
+    const powerAvailable = ["on", "off"].includes(powerState);
+    const stopEntityId = this._config.stop_button_entity;
+    const canStop = Boolean(stopEntityId && ["run", "pause", "delayedstart", "actionrequired"].includes((this.stateText("operation_state_entity") || "").toLowerCase()));
+    const actionMode = this._actionMode || "";
+    const actionBusy = Boolean(this._actionBusy);
     const infoItems = [
       door && { label: "Door", value: door.text, className: door.className },
       finish && { label: "Finish", value: finish, className: "" },
@@ -216,15 +245,57 @@ class HomeConnectWasherCard extends HTMLElement {
       <header class="head"><div class="brand"><div class="brand-mark" aria-hidden="true">⌁</div><div style="min-width:0"><div class="eyebrow">Home Connect · Laundry</div><h2 class="title">${this.escape(this._config.title)}</h2></div></div><div class="state-pill ${statusClass}"><span class="state-dot"></span>${this.escape(statusLabel)}</div></header>
       <main class="hero"><div class="machine ${isRunning ? "spinning" : ""}">${WASHER_ART}</div><section class="hero-info"><div class="state-label">WASH CYCLE</div><div class="operation">${this.escape(operationLabel)}</div><div class="program">${this.escape(program ? this.pretty(program) : "No active program")}</div><div class="progress-block"><div class="progress-meta"><span class="progress-caption">${this.escape(remainingCopy)}</span><span class="progress-value">${hasProgress ? progressCopy : "—"}</span></div><div class="track"><div class="bar" style="--progress:${hasProgress ? progress : progress === 100 ? 100 : 0}%"></div></div></div></section></main>
       ${infoItems.length ? `<section class="info-grid">${infoItems.map((item) => `<div class="info"><span class="info-label">${this.escape(item.label)}</span><span class="info-value ${item.className}">${this.escape(item.value)}</span></div>`).join("")}</section>` : ""}
+      ${(idos1 || idos2 || powerEntityId || stopEntityId) ? `<section class="extras">${idos1 || idos2 ? `<div class="idos"><span class="idos-title">i-Dos detergent</span>${[idos1 && { name: "i-Dos 1", ...idos1 }, idos2 && { name: "i-Dos 2", ...idos2 }].filter(Boolean).map((item) => `<span class="idos-chip ${item.className}"><i class="idos-dot"></i>${this.escape(item.name)} · ${this.escape(item.text)}</span>`).join("")}</div>` : "<div></div>"}<div class="actions">${stopEntityId ? (actionMode === "stop" ? `<button class="action-btn confirm" data-confirm="stop" ${!canStop || actionBusy ? "disabled" : ""}>${actionBusy ? "Sending…" : "Confirm stop"}</button><button class="action-btn" data-cancel>Cancel</button>` : `<button class="action-btn stop" data-action="stop" ${!canStop || actionBusy ? "disabled" : ""}>Stop</button>`) : ""}${powerEntityId ? (actionMode === "power" ? `<button class="action-btn confirm" data-confirm="power" ${!powerAvailable || actionBusy ? "disabled" : ""}>${actionBusy ? "Sending…" : `Confirm power ${powerState === "on" ? "off" : "on"}`}</button><button class="action-btn" data-cancel>Cancel</button>` : `<button class="action-btn" data-action="power" ${!powerAvailable || actionBusy ? "disabled" : ""}>Power ${powerState === "on" ? "Off" : "On"}</button>`) : ""}${this._actionError ? `<span class="action-error">${this.escape(this._actionError)}</span>` : ""}</div></section>` : ""}
       <footer class="footer"><span>${connected === false ? "Appliance disconnected" : connected === true ? "Connected to Home Assistant" : "Home Connect appliance"}</span><span>${this.escape(remainingCopy)}</span></footer>
     </div></ha-card>`;
+    this._root.querySelectorAll("[data-action]").forEach((button) => button.addEventListener("click", () => { this._actionMode = button.dataset.action; this._actionError = ""; this.render(); }));
+    this._root.querySelectorAll("[data-cancel]").forEach((button) => button.addEventListener("click", () => { this._actionMode = ""; this._actionError = ""; this.render(); }));
+    this._root.querySelectorAll("[data-confirm]").forEach((button) => button.addEventListener("click", () => this.performAction(button.dataset.confirm)));
+  }
+
+  async performAction(action) {
+    if (!this._hass || this._actionBusy) return;
+    const operation = (this.stateText("operation_state_entity") || "").toLowerCase();
+    if (action === "stop") {
+      if (!this._config.stop_button_entity || !["run", "pause", "delayedstart", "actionrequired"].includes(operation)) return;
+      this._actionBusy = true;
+      this.render();
+      try {
+        await this._hass.callService("button", "press", { entity_id: this._config.stop_button_entity });
+        this._actionMode = "";
+        this._actionError = "";
+      } catch (error) {
+        this._actionError = "Stop command failed. Check Home Assistant.";
+      } finally {
+        this._actionBusy = false;
+        this.render();
+      }
+      return;
+    }
+    if (action === "power") {
+      const entityId = this._config.power_switch_entity;
+      const current = entityId ? this._hass.states?.[entityId]?.state : null;
+      if (!entityId || !["on", "off"].includes(current)) return;
+      this._actionBusy = true;
+      this.render();
+      try {
+        await this._hass.callService("switch", current === "on" ? "turn_off" : "turn_on", { entity_id: entityId });
+        this._actionMode = "";
+        this._actionError = "";
+      } catch (error) {
+        this._actionError = "Power command failed. Check Home Assistant.";
+      } finally {
+        this._actionBusy = false;
+        this.render();
+      }
+    }
   }
 }
 
 if (!customElements.get(CARD_TYPE)) customElements.define(CARD_TYPE, HomeConnectWasherCard);
 window.customCards = window.customCards || [];
 if (!window.customCards.some((card) => card.type === CARD_TYPE)) {
-  window.customCards.push({ type: CARD_TYPE, name: "Home Connect Washer", description: "A visual, read-only status card for Home Connect washing machines", preview: true, version: VERSION, documentationURL: "https://github.com/Liionboy/lovelace-home-connect-washer-card" });
+  window.customCards.push({ type: CARD_TYPE, name: "Home Connect Washer", description: "A visual status and control card for Home Connect washing machines", preview: true, version: VERSION, documentationURL: "https://github.com/Liionboy/lovelace-home-connect-washer-card" });
 }
 
 console.info(`%c HOME CONNECT WASHER CARD %c ${VERSION} `, "color:#fff;background:#0875c9;font-weight:700", "color:#0875c9;background:#fff;font-weight:700");
