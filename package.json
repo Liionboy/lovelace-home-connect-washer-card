@@ -1,0 +1,9 @@
+{
+  "name": "lovelace-home-connect-washer-card",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check dist/home-connect-washer-card.js"
+  }
+}
